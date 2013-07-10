@@ -1,24 +1,51 @@
 package net.stack3.preferencesamples;
 
+import java.util.ArrayList;
+
+import net.stack3.preferencesamples.preference.PreferenceSampleActivity;
+
 import com.example.preferencesamples.R;
 
 import android.os.Bundle;
 import android.app.Activity;
-import android.view.Menu;
+import android.content.Intent;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.AdapterView.OnItemClickListener;
 
 public class MainActivity extends Activity {
-
+    private ArrayList<MenuItem> items;
+    private ListView listView;
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.main_activity);
+        
+        MenuItem item;
+        
+        items = new ArrayList<MenuItem>();
+        
+        item = new MenuItem();
+        item.setTitle("Preference");
+        item.setActivityClass(PreferenceSampleActivity.class);
+        items.add(item);
+        
+        listView = (ListView)findViewById(android.R.id.list);
+        
+        ArrayAdapter<MenuItem> adapter = new ArrayAdapter<MenuItem>(this, android.R.layout.simple_list_item_1, items);
+        listView.setAdapter(adapter); 
+        listView.setOnItemClickListener(listViewOnItemClickListener);
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
+    
+    private OnItemClickListener listViewOnItemClickListener = new OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> adapter, View view, int position, long id) {
+            MenuItem item = items.get(position);
+            Intent intent = new Intent(MainActivity.this, item.getActivityClass());
+            startActivity(intent);
+        }
+    };
 }
