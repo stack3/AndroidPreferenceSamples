@@ -22,7 +22,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="net.stack3.preferencesamples.preference.PreferenceSampleActivity"></activity>
+        <activity android:name="net.stack3.preferencesamples.sharedpreference.SharedPreferenceSampleActivity"></activity>
     </application>
 
 </manifest>

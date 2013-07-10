@@ -2,7 +2,7 @@ package net.stack3.preferencesamples;
 
 import java.util.ArrayList;
 
-import net.stack3.preferencesamples.preference.PreferenceSampleActivity;
+import net.stack3.preferencesamples.sharedpreference.SharedPreferenceSampleActivity;
 
 import com.example.preferencesamples.R;
 
@@ -30,7 +30,7 @@ public class MainActivity extends Activity {
         
         item = new MenuItem();
         item.setTitle("Preference");
-        item.setActivityClass(PreferenceSampleActivity.class);
+        item.setActivityClass(SharedPreferenceSampleActivity.class);
         items.add(item);
         
         listView = (ListView)findViewById(android.R.id.list);

@@ -1,6 +1,6 @@
-package net.stack3.preferencesamples.preference;
+package net.stack3.preferencesamples.sharedpreference;
 
-import java.io.ObjectInputStream.GetField;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.example.preferencesamples.R;
@@ -8,13 +8,12 @@ import com.example.preferencesamples.R;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.Preference;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class PreferenceSampleActivity extends Activity {
+public class SharedPreferenceSampleActivity extends Activity {
     private static final String PREF_NAME = "preference-sample";
     private static final String PREF_KEY_SAVED_COUNT = "savedCount";
     private static final String PREF_KEY_SAVED_AT = "savedAt";
@@ -44,9 +43,13 @@ public class PreferenceSampleActivity extends Activity {
     };
     
     private void updateView() {
+        SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy/MM/dd H:m:s");
+        
         StringBuilder sb = new StringBuilder();
         sb.append(String.format("Saved Count: %d\n", savedCount));
-        sb.append(String.format("Saved at: %s", savedAt));
+        if (savedAt != null) {
+            sb.append(String.format("Saved at: %s", dateFormatter.format(savedAt)));
+        }
         
         TextView textView = (TextView)findViewById(R.id.text);
         textView.setText(sb.toString());
