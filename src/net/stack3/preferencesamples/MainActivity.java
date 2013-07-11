@@ -29,7 +29,7 @@ public class MainActivity extends Activity {
         items = new ArrayList<MenuItem>();
         
         item = new MenuItem();
-        item.setTitle("Preference");
+        item.setTitle("SharedPreference");
         item.setActivityClass(SharedPreferenceSampleActivity.class);
         items.add(item);
         
