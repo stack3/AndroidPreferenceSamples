@@ -49,6 +49,8 @@ public class SharedPreferenceSampleActivity extends Activity {
         sb.append(String.format("Saved Count: %d\n", savedCount));
         if (savedAt != null) {
             sb.append(String.format("Saved at: %s", dateFormatter.format(savedAt)));
+        } else {
+            sb.append("Saved at: ---");
         }
         
         TextView textView = (TextView)findViewById(R.id.text);
