@@ -9,11 +9,12 @@
     <string name="pref_key_gender">gender</string>
     <string name="pref_key_favorite_colors">favorite_colors</string>
     <string name="pref_key_receive_newsletter">receive_newsletter</string>
-
+    <string name="pref_key_push_notification">push_notification</string>
+    
     <string name="username">ユーザー名</string>
     
     <string name="receive_newsletter">ニュースレターを受け取る</string>
-    <string name="please_check_if_receive">受け取るならチェックしてください</string>
+    <string name="receive_newsletter_summary">ニュースレターを受け取るならチェックしてください</string>
     
     <string name="gender">性別</string>
     <string name="choose_gender">性別を選択</string>
@@ -28,5 +29,8 @@
     <string name="red">赤</string>
     <string name="green">緑</string>
     <string name="blue">青</string>
-        
+
+    <string name="push_notification">プッシュ通知</string>
+    <string name="push_notification_summary">メッセージを受信した時にプッシュ通知で知らせる</string>
+    
 </resources>

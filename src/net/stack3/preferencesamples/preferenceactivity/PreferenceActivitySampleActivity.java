@@ -28,7 +28,7 @@ public class PreferenceActivitySampleActivity extends Activity {
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            addPreferencesFromResource(R.xml.preference_activity_sample);
+            addPreferencesFromResource(R.xml.preference_screen_preference_sample);
             
             EditTextPreference usernamePref = (EditTextPreference)findPreference(getString(R.string.pref_key_username));
             usernamePref.setSummary(usernamePref.getText());

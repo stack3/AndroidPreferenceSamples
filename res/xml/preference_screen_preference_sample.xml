@@ -22,9 +22,14 @@
                 android:entryValues="@array/color_values"
                 android:dialogTitle="@string/favorite_colors" />
 
+        <SwitchPreference
+                android:key="@string/pref_key_push_notification"
+                android:title="@string/push_notification"
+                android:summary="@string/push_notification_summary" />
+        
         <CheckBoxPreference
                 android:key="@string/pref_key_receive_newsletter"
                 android:title="@string/receive_newsletter"
-                android:summary="@string/please_check_if_receive" />
+                android:summary="@string/receive_newsletter_summary" />
         
 </PreferenceScreen>
