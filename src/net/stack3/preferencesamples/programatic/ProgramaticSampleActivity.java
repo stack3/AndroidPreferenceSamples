@@ -1,4 +1,4 @@
-package net.stack3.preferencesamples.sharedpreference;
+package net.stack3.preferencesamples.programatic;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -13,8 +13,8 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class SharedPreferenceSampleActivity extends Activity {
-    private static final String PREF_NAME = "preference-sample";
+public class ProgramaticSampleActivity extends Activity {
+    private static final String PREF_NAME = "programatic-sample";
     private static final String PREF_KEY_SAVED_COUNT = "savedCount";
     private static final String PREF_KEY_SAVED_AT = "savedAt";
     

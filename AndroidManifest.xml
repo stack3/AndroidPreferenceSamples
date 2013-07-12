@@ -22,8 +22,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="net.stack3.preferencesamples.sharedpreference.SharedPreferenceSampleActivity"></activity>
-        <activity android:name="net.stack3.preferencesamples.preferenceactivity.PreferenceActivitySampleActivity"></activity>
+        <activity android:name="net.stack3.preferencesamples.programatic.ProgramaticSampleActivity"></activity>
+        <activity android:name="net.stack3.preferencesamples.preferencescreen.PreferenceScreenSampleActivity"></activity>
     </application>
 
 </manifest>

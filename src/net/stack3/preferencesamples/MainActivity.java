@@ -2,8 +2,8 @@ package net.stack3.preferencesamples;
 
 import java.util.ArrayList;
 
-import net.stack3.preferencesamples.preferenceactivity.PreferenceActivitySampleActivity;
-import net.stack3.preferencesamples.sharedpreference.SharedPreferenceSampleActivity;
+import net.stack3.preferencesamples.preferencescreen.PreferenceScreenSampleActivity;
+import net.stack3.preferencesamples.programatic.ProgramaticSampleActivity;
 
 import net.stack3.preferencesamples.R;
 
@@ -30,13 +30,13 @@ public class MainActivity extends Activity {
         items = new ArrayList<MenuItem>();
         
         item = new MenuItem();
-        item.setTitle("SharedPreference");
-        item.setActivityClass(SharedPreferenceSampleActivity.class);
+        item.setTitle("Programatic");
+        item.setActivityClass(ProgramaticSampleActivity.class);
         items.add(item);
         
         item = new MenuItem();
-        item.setTitle("PreferenceActivity");
-        item.setActivityClass(PreferenceActivitySampleActivity.class);
+        item.setTitle("PreferenceScreen");
+        item.setActivityClass(PreferenceScreenSampleActivity.class);
         items.add(item);
         
         listView = (ListView)findViewById(android.R.id.list);

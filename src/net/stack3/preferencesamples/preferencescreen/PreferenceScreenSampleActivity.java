@@ -1,4 +1,4 @@
-package net.stack3.preferencesamples.preferenceactivity;
+package net.stack3.preferencesamples.preferencescreen;
 
 import java.util.ArrayList;
 import java.util.Set;
@@ -15,7 +15,7 @@ import android.preference.MultiSelectListPreference;
 import android.preference.PreferenceFragment;
 import android.text.TextUtils;
 
-public class PreferenceActivitySampleActivity extends Activity {
+public class PreferenceScreenSampleActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +28,7 @@ public class PreferenceActivitySampleActivity extends Activity {
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            addPreferencesFromResource(R.xml.preference_screen_preference_sample);
+            addPreferencesFromResource(R.xml.preference_screen_sample);
             
             EditTextPreference usernamePref = (EditTextPreference)findPreference(getString(R.string.pref_key_username));
             usernamePref.setSummary(usernamePref.getText());
