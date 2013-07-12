@@ -5,4 +5,28 @@
     <string name="action_settings">Settings</string>
     <string name="save">Save</string>
 
+    <string name="pref_key_username">username</string>
+    <string name="pref_key_gender">gender</string>
+    <string name="pref_key_favorite_colors">favorite_colors</string>
+    <string name="pref_key_receive_newsletter">receive_newsletter</string>
+
+    <string name="username">ユーザー名</string>
+    
+    <string name="receive_newsletter">ニュースレターを受け取る</string>
+    <string name="please_check_if_receive">受け取るならチェックしてください</string>
+    
+    <string name="gender">性別</string>
+    <string name="choose_gender">性別を選択</string>
+    <string name="male">男</string>
+    <string name="female">女</string>
+    <string name="secret">秘密</string>
+    
+    <string name="favorite_colors">お気に入りの色</string>
+    <string name="choose_favorite_colors">お気に入りの色を複数選択</string>
+    <string name="white">白</string>
+    <string name="black">黒</string>
+    <string name="red">赤</string>
+    <string name="green">緑</string>
+    <string name="blue">青</string>
+        
 </resources>

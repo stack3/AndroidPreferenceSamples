@@ -1,17 +1,18 @@
 package net.stack3.preferencesamples.preferenceactivity;
 
-import java.util.List;
-
 import com.example.preferencesamples.R;
 
+import android.app.Activity;
 import android.os.Bundle;
-import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
 
-public class PreferenceActivitySampleActivity extends PreferenceActivity {
+public class PreferenceActivitySampleActivity extends Activity {
     @Override
-    public void onBuildHeaders(List<Header> target) {
-        loadHeadersFromResource(R.xml.preference_activity_sample_fragment, target);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        getFragmentManager().beginTransaction().replace(android.R.id.content,
+                new CustomPreferenceFragment()).commit();        
     }
     
     public static class CustomPreferenceFragment extends PreferenceFragment {

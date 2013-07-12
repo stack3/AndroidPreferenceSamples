@@ -1,13 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="entries_list_preference">
-        <item>Donut 1.6</item>
-        <item>Eclair 2.1</item>
-        <item>Froyo 2.2</item>
+    <string-array name="gender_names">
+        <item>@string/secret</item>
+        <item>@string/male</item>
+        <item>@string/female</item>
     </string-array>
-    <string-array name="entryvalues_list_preference">
-        <item>donut</item>
-        <item>eclair</item>
-        <item>froyo</item>
-    </string-array>    
+    
+    <string-array name="gender_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+    <string-array name="color_names">
+        <item>@string/white</item>
+        <item>@string/black</item>
+        <item>@string/red</item>
+        <item>@string/green</item>
+        <item>@string/blue</item>
+    </string-array>
+    
+    <string-array name="color_values">
+        <item>#ffffff</item>
+        <item>#000000</item>
+        <item>#ff0000</item>
+        <item>#00ff00</item>
+        <item>#0000ff</item>
+    </string-array>
+    
 </resources>
