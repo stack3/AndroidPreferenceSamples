@@ -3,7 +3,7 @@ package net.stack3.preferencesamples.sharedpreference;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import com.example.preferencesamples.R;
+import net.stack3.preferencesamples.R;
 
 import android.app.Activity;
 import android.content.SharedPreferences;

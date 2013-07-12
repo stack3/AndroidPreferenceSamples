@@ -3,7 +3,7 @@ package net.stack3.preferencesamples.preferenceactivity;
 import java.util.ArrayList;
 import java.util.Set;
 
-import com.example.preferencesamples.R;
+import net.stack3.preferencesamples.R;
 
 import android.app.Activity;
 import android.content.SharedPreferences;

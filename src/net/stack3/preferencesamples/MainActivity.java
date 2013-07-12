@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import net.stack3.preferencesamples.preferenceactivity.PreferenceActivitySampleActivity;
 import net.stack3.preferencesamples.sharedpreference.SharedPreferenceSampleActivity;
 
-import com.example.preferencesamples.R;
+import net.stack3.preferencesamples.R;
 
 import android.os.Bundle;
 import android.app.Activity;
