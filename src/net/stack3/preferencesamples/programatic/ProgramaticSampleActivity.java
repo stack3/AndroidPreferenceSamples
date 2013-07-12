@@ -25,7 +25,7 @@ public class ProgramaticSampleActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTitle("PreferenceSample");
-        setContentView(R.layout.preference_sample_activity);
+        setContentView(R.layout.preference_screen_sample_activity);
         
         Button saveButton = (Button)findViewById(R.id.save_button);
         saveButton.setOnClickListener(saveButtonOnClickListener);
