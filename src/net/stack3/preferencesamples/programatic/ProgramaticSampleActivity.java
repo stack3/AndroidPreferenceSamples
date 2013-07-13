@@ -8,6 +8,7 @@ import net.stack3.preferencesamples.R;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -58,7 +59,8 @@ public class ProgramaticSampleActivity extends Activity {
     }
     
     private void loadPreferences() {
-        SharedPreferences pref = getSharedPreferences(PREF_NAME, Activity.MODE_PRIVATE);
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
+        //SharedPreferences pref = getSharedPreferences(PREF_NAME, Activity.MODE_PRIVATE);
         savedCount = pref.getLong(PREF_KEY_SAVED_COUNT, 0);
         long savedAtInterval = pref.getLong(PREF_KEY_SAVED_AT, 0);
         if (savedAtInterval == 0) {
