@@ -2,12 +2,12 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
  
         <EditTextPreference
-                android:key="@string/pref_key_username"
+                android:key="username"
                 android:title="@string/username"
                 android:dialogTitle="@string/username" />
  
         <ListPreference
-                android:key="@string/pref_key_gender"
+                android:key="gender"
                 android:title="@string/gender"
                 android:summary="@string/choose_gender"
                 android:entries="@array/gender_names"
@@ -15,7 +15,7 @@
                 android:dialogTitle="@string/gender" />
         
         <MultiSelectListPreference 
-                android:key="@string/pref_key_favorite_colors"
+                android:key="favorite_colors"
                 android:title="@string/favorite_colors"
                 android:summary="@string/choose_favorite_colors"
                 android:entries="@array/color_names"
@@ -23,12 +23,12 @@
                 android:dialogTitle="@string/favorite_colors" />
 
         <SwitchPreference
-                android:key="@string/pref_key_push_notification"
+                android:key="push_notification"
                 android:title="@string/push_notification"
                 android:summary="@string/push_notification_summary" />
         
         <CheckBoxPreference
-                android:key="@string/pref_key_receive_newsletter"
+                android:key="receive_newsletter"
                 android:title="@string/receive_newsletter"
                 android:summary="@string/receive_newsletter_summary" />
         

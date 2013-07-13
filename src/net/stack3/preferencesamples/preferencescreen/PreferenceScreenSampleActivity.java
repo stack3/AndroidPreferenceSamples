@@ -16,6 +16,12 @@ import android.preference.PreferenceFragment;
 import android.text.TextUtils;
 
 public class PreferenceScreenSampleActivity extends Activity {
+    public static final String PREF_KEY_USERNAME = "username";
+    public static final String PREF_KEY_GENDER = "gender";
+    public static final String PREF_KEY_FAVORITED_COLORS = "favorite_colors";
+    public static final String PREF_KEY_RECEICE_NEWSLETTER = "receive_newsletter";
+    public static final String PREF_KEY_PUSH_NOTIFICATION = "push_notification";    
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,14 +36,14 @@ public class PreferenceScreenSampleActivity extends Activity {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.preference_screen_sample);
             
-            EditTextPreference usernamePref = (EditTextPreference)findPreference(getString(R.string.pref_key_username));
+            EditTextPreference usernamePref = (EditTextPreference)findPreference(PREF_KEY_USERNAME);
             usernamePref.setSummary(usernamePref.getText());
             
-            ListPreference genderPref = (ListPreference)findPreference(getString(R.string.pref_key_gender));
+            ListPreference genderPref = (ListPreference)findPreference(PREF_KEY_GENDER);
             genderPref.setSummary(genderPref.getEntry());
             
-            MultiSelectListPreference favoriteColorsPref = (MultiSelectListPreference)findPreference(getString(R.string.pref_key_favorite_colors));
-            favoriteColorsPref.setSummary(multiSelectListSummary(R.string.pref_key_favorite_colors));
+            MultiSelectListPreference favoriteColorsPref = (MultiSelectListPreference)findPreference(PREF_KEY_FAVORITED_COLORS);
+            favoriteColorsPref.setSummary(multiSelectListSummary(PREF_KEY_FAVORITED_COLORS));
         }
 
         @Override
@@ -57,21 +63,21 @@ public class PreferenceScreenSampleActivity extends Activity {
         private OnSharedPreferenceChangeListener onPreferenceChangeListenter = new OnSharedPreferenceChangeListener() {
             @Override
             public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-                if (key.equals(getString(R.string.pref_key_username))) {
+                if (key.equals(PREF_KEY_USERNAME)) {
                     EditTextPreference pref = (EditTextPreference)findPreference(key);
                     pref.setSummary(pref.getText());
-                } else if (key.equals(getString(R.string.pref_key_gender))) {
+                } else if (key.equals(PREF_KEY_GENDER)) {
                     ListPreference pref = (ListPreference)findPreference(key);
                     pref.setSummary(pref.getEntry());
-                } else if (key.equals(getString(R.string.pref_key_favorite_colors))) {
-                    MultiSelectListPreference pref = (MultiSelectListPreference)findPreference(getString(R.string.pref_key_favorite_colors));
-                    pref.setSummary(multiSelectListSummary(R.string.pref_key_favorite_colors));
+                } else if (key.equals(PREF_KEY_FAVORITED_COLORS)) {
+                    MultiSelectListPreference pref = (MultiSelectListPreference)findPreference(PREF_KEY_FAVORITED_COLORS);
+                    pref.setSummary(multiSelectListSummary(PREF_KEY_FAVORITED_COLORS));
                 }
             }
         };
         
-        private String multiSelectListSummary(int keyResId) {
-            MultiSelectListPreference pref = (MultiSelectListPreference)findPreference(getString(keyResId));
+        private String multiSelectListSummary(String prefKey) {
+            MultiSelectListPreference pref = (MultiSelectListPreference)findPreference(prefKey);
             ArrayList<CharSequence> summaryArray = new ArrayList<CharSequence>();
             CharSequence[] entries = pref.getEntries();
             CharSequence[] entryValues = pref.getEntryValues();

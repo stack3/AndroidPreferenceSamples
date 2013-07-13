@@ -20,8 +20,8 @@ public class ReadDefaultSharedPreferencesActivity extends Activity {
         super.onResume();
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        String username = prefs.getString(getString(R.string.pref_key_username), ""); 
-        String genderIdString = prefs.getString(getString(R.string.pref_key_gender), "0");
+        String username = prefs.getString(PreferenceScreenSampleActivity.PREF_KEY_USERNAME, ""); 
+        String genderIdString = prefs.getString(PreferenceScreenSampleActivity.PREF_KEY_GENDER, "0");
         int genderId = Integer.parseInt(genderIdString);
         Gender gender = Gender.fromId(genderId);
         

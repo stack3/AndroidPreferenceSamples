@@ -75,7 +75,8 @@ public class ProgramaticSampleActivity extends Activity {
         
         savedCount++;
         
-        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
+        //SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences pref = getSharedPreferences(PREF_NAME, Activity.MODE_PRIVATE);
         SharedPreferences.Editor prefEditor = pref.edit();
         prefEditor.putLong(PREF_KEY_SAVED_COUNT, savedCount);
         prefEditor.putLong(PREF_KEY_SAVED_AT, savedAt.getTime());
