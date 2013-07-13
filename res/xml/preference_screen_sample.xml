@@ -11,7 +11,7 @@
                 android:title="@string/gender"
                 android:summary="@string/choose_gender"
                 android:entries="@array/gender_names"
-                android:entryValues="@array/gender_values"
+                android:entryValues="@array/gender_ids"
                 android:dialogTitle="@string/gender" />
         
         <MultiSelectListPreference 

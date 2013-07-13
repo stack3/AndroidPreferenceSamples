@@ -6,7 +6,7 @@
         <item>@string/female</item>
     </string-array>
     
-    <string-array name="gender_values">
+    <string-array name="gender_ids">
         <item>0</item>
         <item>1</item>
         <item>2</item>

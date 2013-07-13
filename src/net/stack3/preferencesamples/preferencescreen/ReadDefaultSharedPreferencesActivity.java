@@ -21,12 +21,12 @@ public class ReadDefaultSharedPreferencesActivity extends Activity {
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         String username = prefs.getString(getString(R.string.pref_key_username), ""); 
-        String genderIdString = prefs.getString(getString(R.string.pref_key_gender), "");
-        Gender gender = Gender.fromGenderIdString(genderIdString);
+        int genderId = prefs.getInt(getString(R.string.pref_key_gender), 0);
+        Gender gender = Gender.fromId(genderId);
         
         StringBuilder text = new StringBuilder();
         text.append(String.format("%s: %s\n", getString(R.string.username), username));
-        text.append(String.format("%s: %s\n", getString(R.string.gender), gender.getName(this)));
+        text.append(String.format("%s: %s\n", getString(R.string.gender), gender.getName()));
         
         TextView textView = (TextView)findViewById(R.id.text);
         textView.setText(text);
