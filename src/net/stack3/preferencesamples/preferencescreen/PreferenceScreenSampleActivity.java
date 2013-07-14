@@ -19,7 +19,7 @@ public class PreferenceScreenSampleActivity extends Activity {
     public static final String PREF_KEY_USERNAME = "username";
     public static final String PREF_KEY_GENDER = "gender";
     public static final String PREF_KEY_FAVORITED_COLORS = "favorite_colors";
-    public static final String PREF_KEY_RECEICE_NEWSLETTER = "receive_newsletter";
+    public static final String PREF_KEY_RECEIVE_NEWSLETTER = "receive_newsletter";
     public static final String PREF_KEY_PUSH_NOTIFICATION = "push_notification";    
     
     @Override
