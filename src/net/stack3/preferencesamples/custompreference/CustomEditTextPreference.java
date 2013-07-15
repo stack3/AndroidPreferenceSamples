@@ -1,45 +1,76 @@
 package net.stack3.preferencesamples.custompreference;
 
-import net.stack3.preferencesamples.R;
+import android.app.Dialog;
 import android.content.Context;
+import android.os.Bundle;
 import android.preference.EditTextPreference;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.AttributeSet;
-import android.widget.Toast;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 
 public class CustomEditTextPreference extends EditTextPreference {
     private int minLength = Integer.MAX_VALUE;
     
     public CustomEditTextPreference(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        readAttributes(attrs);
+        setup(attrs);
     }
     
     public CustomEditTextPreference(Context context, AttributeSet attrs) {
         super(context, attrs);
-        readAttributes(attrs);
+        setup(attrs);
     }
     
     public CustomEditTextPreference(Context context) {
         super(context);
     }
     
-    private void readAttributes(AttributeSet attrs) {
+    private void setup(AttributeSet attrs) {
         minLength = attrs.getAttributeIntValue(
                 "http://schemas.android.com/apk/res/net.stack3.preferencesamples", 
                 "minLength", 
                 Integer.MAX_VALUE);
     }
+
+    private void updateOKButton(int textLength) {
+        Dialog dialog = getDialog();
+        if (dialog != null) {
+            //
+            // Disable OK button if the edit text was lesser than minLength. 
+            //
+            Button okButton = (Button)dialog.findViewById(android.R.id.button1);
+            okButton.setEnabled(textLength >= minLength);
+        }
+    }
     
     @Override
-    protected boolean callChangeListener(Object newValue) {
-        String newString = (String)newValue;
-        if (newString.length() < minLength) {
-            String messageFormat = getContext().getString(R.string.too_short_string_length_format);
-            String message = String.format(messageFormat, minLength);
-            Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
-            return false;
-        } 
+    protected void onAddEditTextToDialogView(View dialogView, EditText editText) {
+        super.onAddEditTextToDialogView(dialogView, editText);
+        editText.addTextChangedListener(textChangeListener);
+    }
+    
+    @Override
+    protected void showDialog(Bundle state) {
+        super.showDialog(state);
+        updateOKButton(getText().length());
+    }
+    
+    private TextWatcher textChangeListener = new TextWatcher() {
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            updateOKButton(s.length());
+        }
         
-        return true;
-   }
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count,
+                int after) {
+        }
+        
+        @Override
+        public void afterTextChanged(Editable s) {
+        }
+    };
 }
