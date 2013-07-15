@@ -24,6 +24,7 @@
         <activity android:name=".programatic.ProgramaticSampleActivity"></activity>
         <activity android:name=".preferencescreen.PreferenceScreenSampleActivity"></activity>
         <activity android:name=".preferencescreen.ReadDefaultSharedPreferencesActivity"></activity>
+        <activity android:name=".custompreference.CustomPreferenceSampleActivity"></activity>
     </application>
 
 </manifest>

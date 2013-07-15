@@ -2,6 +2,7 @@ package net.stack3.preferencesamples;
 
 import java.util.ArrayList;
 
+import net.stack3.preferencesamples.custompreference.CustomPreferenceSampleActivity;
 import net.stack3.preferencesamples.preferencescreen.PreferenceScreenSampleActivity;
 import net.stack3.preferencesamples.preferencescreen.ReadDefaultSharedPreferencesActivity;
 import net.stack3.preferencesamples.programatic.ProgramaticSampleActivity;
@@ -43,6 +44,11 @@ public class MainActivity extends Activity {
         item = new MenuItem();
         item.setTitle("PreferenceScreen(Read)");
         item.setActivityClass(ReadDefaultSharedPreferencesActivity.class);
+        items.add(item);
+
+        item = new MenuItem();
+        item.setTitle("CustomPreference");
+        item.setActivityClass(CustomPreferenceSampleActivity.class);
         items.add(item);
         
         listView = (ListView)findViewById(android.R.id.list);

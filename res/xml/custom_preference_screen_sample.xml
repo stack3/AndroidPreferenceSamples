@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+ 
+        <net.stack3.preferencesamples.custompreference.CustomEditTextPreference
+                android:key="username"
+                android:title="@string/username"
+                android:dialogTitle="@string/username"
+                android:maxLength="20" />
+ 
+        <net.stack3.preferencesamples.custompreference.CustomMultiSelectListPreference 
+                android:key="favorite_colors"
+                android:title="@string/favorite_colors"
+                android:summary="@string/choose_favorite_colors"
+                android:entries="@array/color_names"
+                android:entryValues="@array/color_values"
+                android:dialogTitle="@string/favorite_colors" />        
+
+</PreferenceScreen>
