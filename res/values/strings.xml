@@ -33,4 +33,5 @@
     <string name="push_notification">プッシュ通知</string>
     <string name="push_notification_summary">メッセージを受信した時にプッシュ通知で知らせる</string>
     
+    <string name="too_short_string_length_format">%d文字以上必要です</string>
 </resources>

@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/net.stack3.preferencesamples">
  
         <net.stack3.preferencesamples.custompreference.CustomEditTextPreference
                 android:key="username"
                 android:title="@string/username"
                 android:dialogTitle="@string/username"
-                android:maxLength="20" />
+                android:maxLength="20"
+                app:minLength="3" />
  
         <net.stack3.preferencesamples.custompreference.CustomMultiSelectListPreference 
                 android:key="favorite_colors"
