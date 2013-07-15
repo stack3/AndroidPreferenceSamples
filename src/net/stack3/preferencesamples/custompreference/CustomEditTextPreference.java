@@ -11,19 +11,19 @@ public class CustomEditTextPreference extends EditTextPreference {
     
     public CustomEditTextPreference(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        setupAttributes(attrs);
+        readAttributes(attrs);
     }
     
     public CustomEditTextPreference(Context context, AttributeSet attrs) {
         super(context, attrs);
-        setupAttributes(attrs);
+        readAttributes(attrs);
     }
     
     public CustomEditTextPreference(Context context) {
         super(context);
     }
     
-    private void setupAttributes(AttributeSet attrs) {
+    private void readAttributes(AttributeSet attrs) {
         minLength = attrs.getAttributeIntValue(
                 "http://schemas.android.com/apk/res/net.stack3.preferencesamples", 
                 "minLength", 
