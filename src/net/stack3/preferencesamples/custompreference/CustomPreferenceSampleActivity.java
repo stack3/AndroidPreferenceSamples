@@ -1,6 +1,7 @@
 package net.stack3.preferencesamples.custompreference;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import net.stack3.preferencesamples.R;
@@ -67,20 +68,7 @@ public class CustomPreferenceSampleActivity extends Activity {
         
         private String multiSelectListSummary(String prefKey) {
             CustomMultiSelectListPreference pref = (CustomMultiSelectListPreference)findPreference(prefKey);
-            ArrayList<CharSequence> summaryArray = new ArrayList<CharSequence>();
-            /*
-            CharSequence[] entries = pref.getEntries();
-            CharSequence[] entryValues = pref.getEntryValues();
-            Set<String> values = pref.getValues();
-            for (CharSequence entryValue : entryValues) {
-                if (values.contains(entryValue)) {
-                    int index = pref.findIndexOfValue(entryValue.toString());
-                    if (index >= 0) {
-                        summaryArray.add(entries[index]);
-                    }
-                }
-            }
-            */
+            List<String> summaryArray = pref.getValues();
             return TextUtils.join(", ", summaryArray);
         }
     }

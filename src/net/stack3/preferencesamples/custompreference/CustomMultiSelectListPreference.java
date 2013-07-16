@@ -9,10 +9,13 @@ import net.stack3.preferencesamples.R;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.preference.DialogPreference;
+import android.preference.PreferenceManager;
 import android.util.AttributeSet;
+import android.util.SparseBooleanArray;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -23,8 +26,10 @@ import android.widget.AdapterView.OnItemClickListener;
 public class CustomMultiSelectListPreference extends DialogPreference {
     private static final String ATTR_NAMESPACE = "http://schemas.android.com/apk/res/net.stack3.preferencesamples";
     
-    private CharSequence[] entries;
-    private CharSequence[] entryValues;    
+    private ListView listView;
+    private List<String> entries;
+    private List<String> entryValues;
+    private List<String> values;
     private int minChecked;
     private int maxChecked;
     
@@ -33,9 +38,21 @@ public class CustomMultiSelectListPreference extends DialogPreference {
         
         TypedArray a = context.obtainStyledAttributes(attrs,
                 R.styleable.CustomMultiSelectListPreference, 0, 0);
-        entries = a.getTextArray(R.styleable.CustomMultiSelectListPreference_android_entries);
-        //entryValues = a.getTextArray(R.styleable.CustomMultiSelectListPreference_anrdoid_entryValues);
+        CharSequence[] rawEntries = a.getTextArray(R.styleable.CustomMultiSelectListPreference_android_entries);
+        CharSequence[] rawEntryValues = a.getTextArray(R.styleable.CustomMultiSelectListPreference_android_entryValues);
         a.recycle();
+        
+        if (rawEntries.length != rawEntryValues.length) {
+            throw new Error("entries and entryValues do not match item count.");
+        }
+        
+        entries = new ArrayList<String>();
+        entryValues = new ArrayList<String>();
+        for (int i = 0; i < rawEntries.length; i++) {
+            entries.add(rawEntries[i].toString());
+            entryValues.add(rawEntryValues[i].toString());
+        }
+        values = new ArrayList<String>();
         
         minChecked = attrs.getAttributeIntValue(
                 ATTR_NAMESPACE, 
@@ -47,25 +64,20 @@ public class CustomMultiSelectListPreference extends DialogPreference {
                 Integer.MAX_VALUE);
     }
 
-    public void setEntries(CharSequence[] entries) {
-        this.entries = entries;
+    public List<String> getEntries() {
+        return entries;
     }
     
-    public void setEntries(int entriesResId) {
-        setEntries(getContext().getResources().getTextArray(entriesResId));
+    public List<String> getEntryValues() {
+        return entryValues;
     }
     
-    public void setEntryValues(CharSequence[] entryValues) {
-        this.entryValues = entryValues;
-    }    
-    
-    public void setEntryValues(int entryValuesResId) {
-        setEntryValues(getContext().getResources().getTextArray(entryValuesResId));
+    public List<String> getValues() {
+        return values;
     }
-
+    
     private void updateOKButton() {
         Dialog dialog = getDialog();
-        ListView listView = (ListView)dialog.findViewById(android.R.id.list);
         
         //listView = (ListView)dialog.findViewById(android.R.id.input);
         if (dialog != null && listView != null) {
@@ -82,17 +94,12 @@ public class CustomMultiSelectListPreference extends DialogPreference {
     protected void onBindDialogView(View view) {
         super.onBindDialogView(view);
 
-        List<String> items = new ArrayList<String>();
-        for (int i = 0; i < entries.length; i++) {
-            items.add(entries[i].toString());
-        }
-        
-        ListView listView = (ListView)view.findViewById(android.R.id.list);
-        
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                 getContext(), 
                 android.R.layout.simple_list_item_multiple_choice, 
-                items);
+                entries);
+        
+        listView = (ListView)view.findViewById(android.R.id.list);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(onItemClickListener);
     }
@@ -104,10 +111,47 @@ public class CustomMultiSelectListPreference extends DialogPreference {
         updateOKButton();
     }
     
+    @Override
+    protected Object onGetDefaultValue(TypedArray a, int index) {
+        return new ArrayList<String>();
+    }
+    
+    @Override
+    protected void onSetInitialValue(boolean restorePersistedValue,
+            Object defaultValue) {
+        if (restorePersistedValue) {
+        } else {
+            
+        }
+    }
+    
+    @Override
+    protected void onDialogClosed(boolean positiveResult) {
+        super.onDialogClosed(positiveResult);
+        
+        if (positiveResult) {
+            SharedPreferences.Editor editor = getSharedPreferences().edit();
+            editor.putStringSet(getKey(), getStringSetOfCheckedItems());
+            editor.commit();
+        }
+    }
+    
     private OnItemClickListener onItemClickListener = new OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> adapter, View view, int position, long id) {
             updateOKButton();
         }
     };
+    
+    private Set<String> getStringSetOfCheckedItems() {
+        HashSet<String> stringSet = new HashSet<String>();
+        SparseBooleanArray checkedPositions = listView.getCheckedItemPositions();
+        for (int i = 0; i < entryValues.size(); i++) {
+            String entryValue = entryValues.get(i);
+            if (checkedPositions.get(i)) {
+                stringSet.add(entryValue);
+            }
+        }
+        return stringSet;
+    }
 }

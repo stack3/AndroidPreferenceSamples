@@ -4,6 +4,7 @@
     
     <declare-styleable name="CustomMultiSelectListPreference">
         <attr name="android:entries" />
+        <attr name="android:entryValues" />
         <attr name="minChecked" format="integer" />
         <attr name="maxChecked" format="integer" />
     </declare-styleable>
