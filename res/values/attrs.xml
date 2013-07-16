@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <attr name="minLength" format="integer" />
+    
+    <declare-styleable name="CustomMultiSelectListPreference">
+        <attr name="android:entries" />
+        <attr name="minChecked" format="integer" />
+        <attr name="maxChecked" format="integer" />
+    </declare-styleable>
 </resources>

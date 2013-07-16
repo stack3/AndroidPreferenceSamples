@@ -8,13 +8,16 @@
                 android:dialogTitle="@string/username"
                 android:maxLength="20"
                 app:minLength="3" />
- 
+
         <net.stack3.preferencesamples.custompreference.CustomMultiSelectListPreference 
                 android:key="favorite_colors"
                 android:title="@string/favorite_colors"
                 android:summary="@string/choose_favorite_colors"
                 android:entries="@array/color_names"
                 android:entryValues="@array/color_values"
-                android:dialogTitle="@string/favorite_colors" />        
+                android:dialogTitle="@string/favorite_colors"
+                android:dialogLayout="@layout/custom_multi_select_list_preference"
+                app:minChecked="1"
+                app:maxChecked="3" />        
 
 </PreferenceScreen>

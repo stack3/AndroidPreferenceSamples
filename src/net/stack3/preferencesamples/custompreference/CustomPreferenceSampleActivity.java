@@ -34,7 +34,7 @@ public class CustomPreferenceSampleActivity extends Activity {
             EditTextPreference usernamePref = (EditTextPreference)findPreference(PREF_KEY_USERNAME);
             usernamePref.setSummary(usernamePref.getText());
             
-            MultiSelectListPreference favoriteColorsPref = (MultiSelectListPreference)findPreference(PREF_KEY_FAVORITED_COLORS);
+            CustomMultiSelectListPreference favoriteColorsPref = (CustomMultiSelectListPreference)findPreference(PREF_KEY_FAVORITED_COLORS);
             favoriteColorsPref.setSummary(multiSelectListSummary(PREF_KEY_FAVORITED_COLORS));
         }
 
@@ -59,15 +59,16 @@ public class CustomPreferenceSampleActivity extends Activity {
                     EditTextPreference pref = (EditTextPreference)findPreference(key);
                     pref.setSummary(pref.getText());
                 } else if (key.equals(PREF_KEY_FAVORITED_COLORS)) {
-                    MultiSelectListPreference pref = (MultiSelectListPreference)findPreference(PREF_KEY_FAVORITED_COLORS);
+                    CustomMultiSelectListPreference pref = (CustomMultiSelectListPreference)findPreference(PREF_KEY_FAVORITED_COLORS);
                     pref.setSummary(multiSelectListSummary(PREF_KEY_FAVORITED_COLORS));
                 }
             }
         };
         
         private String multiSelectListSummary(String prefKey) {
-            MultiSelectListPreference pref = (MultiSelectListPreference)findPreference(prefKey);
+            CustomMultiSelectListPreference pref = (CustomMultiSelectListPreference)findPreference(prefKey);
             ArrayList<CharSequence> summaryArray = new ArrayList<CharSequence>();
+            /*
             CharSequence[] entries = pref.getEntries();
             CharSequence[] entryValues = pref.getEntryValues();
             Set<String> values = pref.getValues();
@@ -79,6 +80,7 @@ public class CustomPreferenceSampleActivity extends Activity {
                     }
                 }
             }
+            */
             return TextUtils.join(", ", summaryArray);
         }
     }
