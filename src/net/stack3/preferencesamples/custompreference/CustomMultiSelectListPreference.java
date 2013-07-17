@@ -17,6 +17,7 @@ import android.preference.PreferenceManager;
 import android.util.AttributeSet;
 import android.util.SparseBooleanArray;
 import android.view.View;
+import android.view.ViewDebug.CapturedViewProperty;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -29,7 +30,7 @@ public class CustomMultiSelectListPreference extends DialogPreference {
     private ListView listView;
     private List<String> entries;
     private List<String> entryValues;
-    private List<String> values;
+    private Set<String> values;
     private int minChecked;
     private int maxChecked;
     
@@ -52,7 +53,7 @@ public class CustomMultiSelectListPreference extends DialogPreference {
             entries.add(rawEntries[i].toString());
             entryValues.add(rawEntryValues[i].toString());
         }
-        values = new ArrayList<String>();
+        values = new HashSet<String>();
         
         minChecked = attrs.getAttributeIntValue(
                 ATTR_NAMESPACE, 
@@ -72,9 +73,29 @@ public class CustomMultiSelectListPreference extends DialogPreference {
         return entryValues;
     }
     
-    public List<String> getValues() {
+    public Set<String> getValues() {
         return values;
     }
+    
+    public void setupListViewItemChecked() {
+        for (int i = 0; i < entryValues.size(); i++) {
+            String entryValue = entryValues.get(i);
+            boolean checked = values.contains(entryValue);
+            listView.setItemChecked(i, checked);
+        }
+    }
+
+    private Set<String> getStringSetOfCheckedItems() {
+        HashSet<String> stringSet = new HashSet<String>();
+        SparseBooleanArray checkedPositions = listView.getCheckedItemPositions();
+        for (int i = 0; i < entryValues.size(); i++) {
+            String entryValue = entryValues.get(i);
+            if (checkedPositions.get(i)) {
+                stringSet.add(entryValue);
+            }
+        }
+        return stringSet;
+    }    
     
     private void updateOKButton() {
         Dialog dialog = getDialog();
@@ -90,6 +111,18 @@ public class CustomMultiSelectListPreference extends DialogPreference {
         }
     }
 
+    @SuppressWarnings("unchecked")
+    @Override
+    protected void onSetInitialValue(boolean restorePersistedValue,
+            Object defaultValue) {
+        SharedPreferences prefs = getSharedPreferences();
+        if (restorePersistedValue) {
+            values = prefs.getStringSet(getKey(), new HashSet<String>());
+        } else {
+            values = (Set<String>)defaultValue;
+        }
+    }
+    
     @Override
     protected void onBindDialogView(View view) {
         super.onBindDialogView(view);
@@ -108,21 +141,8 @@ public class CustomMultiSelectListPreference extends DialogPreference {
     protected void showDialog(Bundle state) {
         super.showDialog(state);
         
+        setupListViewItemChecked();
         updateOKButton();
-    }
-    
-    @Override
-    protected Object onGetDefaultValue(TypedArray a, int index) {
-        return new ArrayList<String>();
-    }
-    
-    @Override
-    protected void onSetInitialValue(boolean restorePersistedValue,
-            Object defaultValue) {
-        if (restorePersistedValue) {
-        } else {
-            
-        }
     }
     
     @Override
@@ -139,19 +159,8 @@ public class CustomMultiSelectListPreference extends DialogPreference {
     private OnItemClickListener onItemClickListener = new OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> adapter, View view, int position, long id) {
+            values = getStringSetOfCheckedItems();
             updateOKButton();
         }
     };
-    
-    private Set<String> getStringSetOfCheckedItems() {
-        HashSet<String> stringSet = new HashSet<String>();
-        SparseBooleanArray checkedPositions = listView.getCheckedItemPositions();
-        for (int i = 0; i < entryValues.size(); i++) {
-            String entryValue = entryValues.get(i);
-            if (checkedPositions.get(i)) {
-                stringSet.add(entryValue);
-            }
-        }
-        return stringSet;
-    }
 }

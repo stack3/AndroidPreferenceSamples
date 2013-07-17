@@ -68,8 +68,20 @@ public class CustomPreferenceSampleActivity extends Activity {
         
         private String multiSelectListSummary(String prefKey) {
             CustomMultiSelectListPreference pref = (CustomMultiSelectListPreference)findPreference(prefKey);
-            List<String> summaryArray = pref.getValues();
+            ArrayList<CharSequence> summaryArray = new ArrayList<CharSequence>();
+            List<String> entries = pref.getEntries();
+            List<String> entryValues = pref.getEntryValues();
+            Set<String> values = pref.getValues();
+            for (CharSequence entryValue : entryValues) {
+                if (values.contains(entryValue)) {
+                    int index = entryValues.indexOf(entryValue.toString());
+                    if (index >= 0) {
+                        summaryArray.add(entries.get(index));
+                    }
+                }
+            }
             return TextUtils.join(", ", summaryArray);
+            
         }
     }
 }

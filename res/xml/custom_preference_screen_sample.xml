@@ -15,6 +15,7 @@
                 android:summary="@string/choose_favorite_colors"
                 android:entries="@array/color_names"
                 android:entryValues="@array/color_values"
+                android:defaultValue="@string/white"
                 android:dialogTitle="@string/favorite_colors"
                 android:dialogLayout="@layout/custom_multi_select_list_preference"
                 app:minChecked="1"
