@@ -10,13 +10,16 @@ import net.stack3.preferencesamples.programatic.ProgramaticSampleActivity;
 import net.stack3.preferencesamples.R;
 
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Toast;
 
 public class MainActivity extends Activity {
     private ArrayList<MenuItem> items;
@@ -51,6 +54,11 @@ public class MainActivity extends Activity {
         item.setActivityClass(CustomPreferenceSampleActivity.class);
         items.add(item);
         
+        item = new MenuItem();
+        item.setTitle("Reset Preferences");
+        item.setActivityClass(null);
+        items.add(item);
+        
         listView = (ListView)findViewById(android.R.id.list);
         
         ArrayAdapter<MenuItem> adapter = new ArrayAdapter<MenuItem>(this, android.R.layout.simple_list_item_1, items);
@@ -62,8 +70,16 @@ public class MainActivity extends Activity {
         @Override
         public void onItemClick(AdapterView<?> adapter, View view, int position, long id) {
             MenuItem item = items.get(position);
-            Intent intent = new Intent(MainActivity.this, item.getActivityClass());
-            startActivity(intent);
+            if (item.getActivityClass() != null) {
+                Intent intent = new Intent(MainActivity.this, item.getActivityClass());
+                startActivity(intent);
+            } else {
+                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.clear();
+                editor.commit();
+                Toast.makeText(MainActivity.this, "Reset all preferences", Toast.LENGTH_SHORT).show();
+            }
         }
     };
 }

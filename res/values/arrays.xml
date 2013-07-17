@@ -28,4 +28,9 @@
         <item>#0000ff</item>
     </string-array>
     
+    <string-array name="default_color_values">
+        <item>#ffffff</item>
+        <item>#0000ff</item>
+    </string-array>    
+    
 </resources>

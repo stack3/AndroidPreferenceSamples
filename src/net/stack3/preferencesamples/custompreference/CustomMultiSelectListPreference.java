@@ -13,11 +13,9 @@ import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.preference.DialogPreference;
-import android.preference.PreferenceManager;
 import android.util.AttributeSet;
 import android.util.SparseBooleanArray;
 import android.view.View;
-import android.view.ViewDebug.CapturedViewProperty;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -111,6 +109,18 @@ public class CustomMultiSelectListPreference extends DialogPreference {
         }
     }
 
+    @Override
+    protected Object onGetDefaultValue(TypedArray a, int index) {
+        CharSequence[] defalutValues = a.getTextArray(index);
+        Set<String> stringSet = new HashSet<String>();
+        if (defalutValues != null) {
+            for (CharSequence defaultValue : defalutValues) {
+                stringSet.add(defaultValue.toString());
+            }
+        }
+        return stringSet;
+    }
+    
     @SuppressWarnings("unchecked")
     @Override
     protected void onSetInitialValue(boolean restorePersistedValue,
