@@ -1,6 +1,7 @@
 package net.stack3.preferencesamples.custompreference;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -12,6 +13,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.os.Bundle;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.preference.DialogPreference;
 import android.util.AttributeSet;
 import android.util.SparseBooleanArray;
@@ -173,4 +176,72 @@ public class CustomMultiSelectListPreference extends DialogPreference {
             updateOKButton();
         }
     };
+    
+    protected Parcelable onSaveInstanceState() {
+        final Parcelable superState = super.onSaveInstanceState();
+        if (isPersistent()) {
+            return superState;
+        }
+
+        final SavedState myState = new SavedState(superState);
+        myState.values = values;
+        return myState;
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Parcelable state) {
+        if (state == null || !state.getClass().equals(SavedState.class)) {
+            super.onRestoreInstanceState(state);
+            return;
+        }
+
+        SavedState myState = (SavedState)state;
+        super.onRestoreInstanceState(myState.getSuperState());
+        
+        values = myState.values;
+    };
+    
+    private static class SavedState extends BaseSavedState {
+        private Set<String> values;
+        
+        public SavedState(Parcelable superState) {
+            super(superState);
+        }
+
+        public SavedState(Parcel source) {
+            super(source);
+
+            List<?> listValue = source.readArrayList(null);
+            values = new HashSet<String>();
+            for (Object object : listValue) {
+                if (object instanceof String) {
+                    values.add((String)object);
+                }
+            }
+        }
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags) {
+            super.writeToParcel(dest, flags);
+            
+            List<String> listValue = new ArrayList<String>();
+            for (String value : values) {
+                listValue.add(value);
+            }
+            dest.writeList(listValue);
+        }
+
+        @SuppressWarnings("unused")
+        public static final Parcelable.Creator<SavedState> CREATOR =
+                new Parcelable.Creator<SavedState>() {
+
+            public SavedState createFromParcel(Parcel in) {
+                return new SavedState(in);
+            }
+
+            public SavedState[] newArray(int size) {
+                return new SavedState[size];
+            }
+        };
+    }
 }
