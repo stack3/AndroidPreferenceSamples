@@ -10,7 +10,6 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
 import android.preference.EditTextPreference;
-import android.preference.MultiSelectListPreference;
 import android.preference.PreferenceFragment;
 import android.text.TextUtils;
 
