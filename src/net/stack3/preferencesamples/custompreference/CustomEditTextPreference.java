@@ -1,7 +1,9 @@
 package net.stack3.preferencesamples.custompreference;
 
+import net.stack3.preferencesamples.R;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.preference.EditTextPreference;
 import android.text.Editable;
@@ -16,23 +18,23 @@ public class CustomEditTextPreference extends EditTextPreference {
     
     public CustomEditTextPreference(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        setup(attrs);
+        setup(context, attrs);
     }
     
     public CustomEditTextPreference(Context context, AttributeSet attrs) {
         super(context, attrs);
-        setup(attrs);
+        setup(context, attrs);
     }
     
     public CustomEditTextPreference(Context context) {
         super(context);
     }
     
-    private void setup(AttributeSet attrs) {
-        minLength = attrs.getAttributeIntValue(
-                "http://schemas.android.com/apk/res/net.stack3.preferencesamples", 
-                "minLength", 
-                Integer.MAX_VALUE);
+    private void setup(Context context, AttributeSet attrs) {
+        TypedArray a = context.obtainStyledAttributes(attrs,
+                R.styleable.CustomEditTextPreference, 0, 0);
+        minLength = a.getInt(R.styleable.CustomEditTextPreference_minLength, Integer.MAX_VALUE);
+        a.recycle();
     }
 
     private void updateOKButton(int textLength) {
@@ -55,7 +57,8 @@ public class CustomEditTextPreference extends EditTextPreference {
     @Override
     protected void showDialog(Bundle state) {
         super.showDialog(state);
-        updateOKButton(getText().length());
+        String text = getText();
+        updateOKButton(text != null ? text.length() : 0);
     }
     
     private TextWatcher textChangeListener = new TextWatcher() {

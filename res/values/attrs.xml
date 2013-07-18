@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <attr name="minLength" format="integer" />
+    <declare-styleable name="CustomEditTextPreference">
+        <attr name="minLength" format="integer" />
+    </declare-styleable>
     
     <declare-styleable name="CustomMultiSelectListPreference">
         <attr name="android:entries" />
